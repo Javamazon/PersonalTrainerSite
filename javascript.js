@@ -12,7 +12,7 @@ var theForm = document.forms['calorieForm'];
 
 
 function calculateTotal() {
- 
+
 
   getGender();
   console.log(gender);
@@ -20,14 +20,29 @@ function calculateTotal() {
   var formHeight = calcHeight();
   var formAge = getAge();
   var formWeight = getWeight();
+  var formActivity = getActivityLevel();
 
   console.log(formHeight);
   console.log(formAge);
   console.log(formWeight);
 
+  function calFormula() {
+    if (gender === "male") {
+      var totalCal = 66 + (6.3 * formWeight) + (12.9 * formHeight) - (6.8 * formAge);
+      console.log(formActivity);
+      totalCal = totalCal * formActivity;
+      totalCal = Math.round(totalCal);
+      console.log(totalCal);
+    } else {
+      var totalCal = 655 + (4.3 * formWeight) + (4.7 * formHeight) - (4.7 * formAge);
+      totalCal = totalCal * formActivity;
+      totalCal = Math.round(totalCal);
+      console.log(totalCal);
+    }
+    return totalCal;
+  }
 
-
-
+  calFormula();
 
 
   function getGender() {
@@ -78,6 +93,43 @@ function calculateTotal() {
 
     console.log(weightInput);
     return weightInput;
+  }
+
+  function getActivityLevel() {
+    var activeLevel = document.getElementById('activityLevel');
+    var levelInput = activeLevel.options[activeLevel.selectedIndex].text;
+    var levelValue = activeLevel.options[activeLevel.selectedIndex].value;
+    var multiplier;
+    console.log(levelValue);
+
+    switch (levelValue) {
+      case "sedentry":
+        multiplier = 1.2;
+        
+        break;
+
+      case "lActive":
+        multiplier = 1.375;
+        break;
+
+      case "mActive":
+
+        multiplier = 1.55;
+        break;
+
+      case 'vActive':
+
+        multiplier = 1.725;
+        break;
+
+      case 'xActive':
+
+        multiplier = 1.9;
+        break;
+
+    }
+
+    return multiplier;
   }
 
 
