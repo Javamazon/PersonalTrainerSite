@@ -9,7 +9,7 @@ function myFunction() {
 
 
 var theForm = document.forms['calorieForm'];
-
+var totalCal;
 
 function calculateTotal() {
 
@@ -39,7 +39,21 @@ function calculateTotal() {
       totalCal = Math.round(totalCal);
       console.log(totalCal);
     }
+
+    var resultsDiv = document.getElementById('calcResults');
+
+
+
+    var calAmt = document.createTextNode("You should be eating " + totalCal + " many calories");
+    var para = document.createElement('p');
+    console.log(totalCal);
+
+    para.appendChild(calAmt);
+    resultsDiv.appendChild(para);
     return totalCal;
+
+
+
   }
 
   calFormula();
@@ -105,7 +119,7 @@ function calculateTotal() {
     switch (levelValue) {
       case "sedentry":
         multiplier = 1.2;
-        
+
         break;
 
       case "lActive":
@@ -134,8 +148,11 @@ function calculateTotal() {
 
 
 
+
+
+
+
+
 }
-
-
 
 
